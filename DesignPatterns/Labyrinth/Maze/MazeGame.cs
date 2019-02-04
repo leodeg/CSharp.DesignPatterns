@@ -34,5 +34,24 @@ namespace Labyrinth
 
 			return maze;
 		}
+
+		public Maze CreateMaze (MazeBuilder builder)
+		{
+			builder.BuildMaze ();
+			builder.BuildRoom (1);
+			builder.BuildRoom (2);
+			builder.BuildDoor (1, 2);
+
+			return builder.GetMaze ();
+		}
+
+		public Maze CreateComplexMaze (MazeBuilder builder, int mazeSize)
+		{
+			for (int i = 0; i < mazeSize; i++)
+			{
+				builder.BuildRoom (i + 1);
+			}
+			return builder.GetMaze ();
+		}
 	}
 }

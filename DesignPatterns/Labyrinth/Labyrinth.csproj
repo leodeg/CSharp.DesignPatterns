@@ -45,6 +45,7 @@
     <Compile Include="MazeParts\MapSite.cs" />
     <Compile Include="MazeParts\Direction.cs" />
     <Compile Include="Maze\Maze.cs" />
+    <Compile Include="Maze\MazeBuilder.cs" />
     <Compile Include="Maze\MazeFactory.cs" />
     <Compile Include="Maze\MazeGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,6 +16,8 @@ namespace Labyrinth
 			m_Rooms = new Dictionary<int, Room> ();
 		}
 
+		public int RoomNumbers { get { return m_Rooms.Count; } }
+
 		public void AddRoom (Room room)
 		{
 			m_Rooms.Add (room.RoomNumber, room);
