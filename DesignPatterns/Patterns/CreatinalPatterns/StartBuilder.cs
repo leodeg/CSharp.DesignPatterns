@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Builder
+namespace CreationalPatterns.Builder
 {
 	public class StartBuilder
 	{
