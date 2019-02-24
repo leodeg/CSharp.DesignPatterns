@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BehavioralPatterns\StartCommand.cs" />
+    <Compile Include="BehavioralPatterns\StartIterator.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Abstract\AbstractFactory.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Core\Client.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Core\StartFactory.cs" />
@@ -51,6 +53,11 @@
     <Compile Include="CreatinalPatterns\StartFactoryMethod.cs" />
     <Compile Include="CreatinalPatterns\StartSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructuralPatterns\StartBridge.cs" />
+    <Compile Include="StructuralPatterns\StartDecorator.cs" />
+    <Compile Include="StructuralPatterns\StartFacade.cs" />
+    <Compile Include="StructuralPatterns\StartFlyweight.cs" />
+    <Compile Include="StructuralPatterns\StartProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
