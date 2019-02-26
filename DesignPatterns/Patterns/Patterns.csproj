@@ -43,6 +43,11 @@
   <ItemGroup>
     <Compile Include="BehavioralPatterns\StartCommand.cs" />
     <Compile Include="BehavioralPatterns\StartIterator.cs" />
+    <Compile Include="BehavioralPatterns\StartMediator.cs" />
+    <Compile Include="BehavioralPatterns\StartMemento.cs" />
+    <Compile Include="BehavioralPatterns\StartObserver.cs" />
+    <Compile Include="BehavioralPatterns\StartState.cs" />
+    <Compile Include="BehavioralPatterns\StartVisitor.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Abstract\AbstractFactory.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Core\Client.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Core\StartFactory.cs" />
