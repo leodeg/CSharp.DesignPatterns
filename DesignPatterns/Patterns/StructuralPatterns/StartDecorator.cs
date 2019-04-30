@@ -14,8 +14,8 @@ namespace Patterns.StructuralPatterns
 			Decorator decoderA = new ConcreteDecoratorA ();
 			Decorator decoderB = new ConcreteDecoratorB ();
 
-			decoderA.m_Component = component;
-			decoderB.m_Component = decoderA;
+			decoderA.Component = component;
+			decoderB.Component = decoderA;
 			decoderB.Operation ();
 		}
 	}
@@ -37,13 +37,13 @@ namespace Patterns.StructuralPatterns
 
 	public abstract class Decorator : Component
 	{
-		public Component m_Component { get; set; }
+		public Component Component { get; set; }
 
 		public override void Operation ()
 		{
-			if (m_Component != null)
+			if (Component != null)
 			{
-				m_Component.Operation ();
+				Component.Operation ();
 			}
 		}
 	}

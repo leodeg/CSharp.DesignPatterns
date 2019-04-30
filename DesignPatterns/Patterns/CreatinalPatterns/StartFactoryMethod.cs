@@ -2,47 +2,47 @@
 
 namespace CreationalPatterns.FactoryMethods
 {
-	public class StartFactoryMethod
-	{
-		public void Start ()
-		{
-			Creator creator = null;
-			Product product = null;
+    public class StartFactoryMethod
+    {
+        public void Start ()
+        {
+            Factory factory = null;
+            Product product = null;
 
-			creator = new ConcreteCreator ();
-			product = creator.FactoryMethod ();
+            factory = new ConcreteFactory ();
+            product = factory.CreateProduct ();
 
-			creator.Operation ();
-		}
-	}
+            factory.Operation ();
+        }
+    }
 
-	public abstract class Product { }
+    public abstract class Product { }
 
-	public abstract class Creator
-	{
-		Product m_Product;
+    public abstract class Factory
+    {
+        private Product Product;
 
-		public abstract Product FactoryMethod ();
+        public abstract Product CreateProduct ();
 
-		public void Operation ()
-		{
-			m_Product = FactoryMethod ();
-		}
-	}
+        public void Operation ()
+        {
+            Product = CreateProduct ();
+        }
+    }
 
-	public class ConcreteCreator : Creator
-	{
-		public override Product FactoryMethod ()
-		{
-			return new ConcreteProduct ();
-		}
-	}
+    public class ConcreteFactory : Factory
+    {
+        public override Product CreateProduct ()
+        {
+            return new ConcreteProduct ();
+        }
+    }
 
-	public class ConcreteProduct : Product
-	{
-		public ConcreteProduct ()
-		{
-			Console.WriteLine ("{0}:: Product created", GetType().FullName);
-		}
-	}
+    public class ConcreteProduct : Product
+    {
+        public ConcreteProduct ()
+        {
+            Console.WriteLine ("{0}:: Product created", GetType ().FullName);
+        }
+    }
 }

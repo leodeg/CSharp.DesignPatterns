@@ -7,134 +7,133 @@ using System.Threading.Tasks;
 
 namespace Patterns.BehavioralPatterns
 {
-	internal class StartObserver
-	{
-		public void PullStart ()
-		{
-			ConcreteSubjectPull subject = new ConcreteSubjectPull ();
-			subject.Attach (new ConcreteObserverPull (subject));
-			subject.Attach (new ConcreteObserverPull (subject));
-			subject.State = "State...";
-			subject.Notify ();
-		}
+    internal class StartObserver
+    {
+        public void PullStart ()
+        {
+            ConcretePublisherPull subject = new ConcretePublisherPull ();
+            subject.Subscribe (new ConcreteSubscriberPull (subject));
+            subject.Subscribe (new ConcreteSubscriberPull (subject));
+            subject.State = "State...";
+            subject.Notify ();
+        }
 
-		public void PushStart ()
-		{
+        public void PushStart ()
+        {
 
-			ConcreteSubjectPush subject = new ConcreteSubjectPush ();
-			subject.Attach (new ConcreteObserverPush (subject));
-			subject.Attach (new ConcreteObserverPush (subject));
-			subject.State = "State...";
-			subject.Notify ();
-		}
-	}
+            ConcretePublisherPush subject = new ConcretePublisherPush ();
+            subject.Subscribe (new ConcreteSubscriberPush (subject));
+            subject.Subscribe (new ConcreteSubscriberPush (subject));
+            subject.State = "State...";
+            subject.Notify ();
+        }
+    }
 
-	#region Pull Example
+    #region Pull Example
 
-	public abstract class SubjectPull
-	{
-		private ArrayList observers = new ArrayList ();
+    public abstract class SubscriberPull
+    {
+        public abstract void Update ();
+    }
 
-		public void Attach (ObserverPull observer)
-		{
-			observers.Add (observer);
-		}
+    public abstract class PublisherPull
+    {
+        private ArrayList subscribers = new ArrayList ();
 
-		public void Detach (ObserverPull observer)
-		{
-			observers.Remove (observer);
-		}
+        public void Subscribe (SubscriberPull observer)
+        {
+            subscribers.Add (observer);
+        }
 
-		public void Notify ()
-		{
-			foreach (ObserverPull observer in observers)
-			{
-				observer.Update ();
-			}
-		}
-	}
+        public void Unsubscribe (SubscriberPull observer)
+        {
+            subscribers.Remove (observer);
+        }
 
-	public class ConcreteSubjectPull : SubjectPull
-	{
-		public string State { get; set; }
-	}
+        public void Notify ()
+        {
+            foreach (SubscriberPull observer in subscribers)
+            {
+                observer.Update ();
+            }
+        }
+    }
 
-	public abstract class ObserverPull
-	{
-		public abstract void Update ();
-	}
+    public class ConcretePublisherPull : PublisherPull
+    {
+        public string State { get; set; }
+    }
 
-	public class ConcreteObserverPull : ObserverPull
-	{
-		private string observerState;
-		private readonly ConcreteSubjectPull subject;
+    public class ConcreteSubscriberPull : SubscriberPull
+    {
+        private string subscriberState;
+        private readonly ConcretePublisherPull publisher;
 
-		public ConcreteObserverPull (ConcreteSubjectPull subject)
-		{
-			this.subject = subject;
-		}
+        public ConcreteSubscriberPull (ConcretePublisherPull subject)
+        {
+            this.publisher = subject;
+        }
 
-		public override void Update ()
-		{
-			observerState = subject.State;
-		}
+        public override void Update ()
+        {
+            subscriberState = publisher.State;
+        }
+    }
 
-	}
-	#endregion
+    #endregion
 
-	#region Push Example
+    #region Push Example
 
-	abstract class SubjectPush
-	{
-		private ArrayList observers = new ArrayList ();
+    abstract class SubscriberPush
+    {
+        public abstract void Update (string state);
+    }
 
-		public void Attach (ObserverPush observer)
-		{
-			observers.Add (observer);
-		}
+    abstract class PublisherPush
+    {
+        private ArrayList subscribers = new ArrayList ();
 
-		public void Detach (ObserverPush observer)
-		{
-			observers.Remove (observer);
-		}
+        public virtual string State { get; set; }
 
-		public virtual string State { get; set; }
+        public void Subscribe (SubscriberPush observer)
+        {
+            subscribers.Add (observer);
+        }
 
-		public void Notify ()
-		{
-			foreach (ObserverPush observer in observers)
-			{
-				observer.Update (State);
-			}
-		}
-	}
+        public void Unsubscribe (SubscriberPush observer)
+        {
+            subscribers.Remove (observer);
+        }
 
-	abstract class ObserverPush
-	{
-		public abstract void Update (string state);
-	}
+        public void Notify ()
+        {
+            foreach (SubscriberPush subscriber in subscribers)
+            {
+                subscriber.Update (State);
+            }
+        }
+    }
 
-	class ConcreteSubjectPush : SubjectPush
-	{
-		public override string State { get; set; }
-	}
+    class ConcretePublisherPush : PublisherPush
+    {
+        public override string State { get; set; }
+    }
 
-	class ConcreteObserverPush : ObserverPush
-	{
-		string observerState;
-		ConcreteSubjectPush concreteSubject;
+    class ConcreteSubscriberPush : SubscriberPush
+    {
+        private string subscriberState;
+        private ConcretePublisherPush concretePublisher;
 
-		public ConcreteObserverPush (ConcreteSubjectPush subject)
-		{
-			concreteSubject = subject;
-		}
+        public ConcreteSubscriberPush (ConcretePublisherPush subject)
+        {
+            concretePublisher = subject;
+        }
 
-		public override void Update (string state)
-		{
-			observerState = state;
-		}
-	}
+        public override void Update (string state)
+        {
+            subscriberState = state;
+        }
+    }
 
-
-	#endregion
+    #endregion
 }
