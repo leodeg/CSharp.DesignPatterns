@@ -47,6 +47,7 @@
     <Compile Include="BehavioralPatterns\StartMemento.cs" />
     <Compile Include="BehavioralPatterns\StartObserver.cs" />
     <Compile Include="BehavioralPatterns\StartState.cs" />
+    <Compile Include="BehavioralPatterns\StartTemplateMethod.cs" />
     <Compile Include="BehavioralPatterns\StartVisitor.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Abstract\AbstractFactory.cs" />
     <Compile Include="CreatinalPatterns\AbstractFactory\Core\Client.cs" />
